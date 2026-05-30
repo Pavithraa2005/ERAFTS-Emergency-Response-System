@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ERAFTS Dashboard</title>
+
+<link rel="stylesheet" href="style.css">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<link
+rel="stylesheet"
+href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+/>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+</head>
+
+<body>
+
+<!-- BACKGROUND EFFECTS -->
+
+<div class="bg-blur blur-1"></div>
+<div class="bg-blur blur-2"></div>
+
+<div class="layout">
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+            🚨 ERAFTS
+        </div>
+
+        <div class="section-title">
+            OVERVIEW
+        </div>
+
+        <ul class="menu">
+
+            <li class="active"
+                onclick="showPage('dashboard',this)">
+                <i class="fas fa-chart-line"></i>
+                Dashboard
+            </li>
+
+            <li onclick="showPage('incidents',this)">
+                <i class="fas fa-triangle-exclamation"></i>
+                Incidents
+            </li>
+
+            <li onclick="showPage('analytics',this)">
+                <i class="fas fa-chart-column"></i>
+                Analytics
+            </li>
+
+        </ul>
+
+        <div class="section-title">
+            CATEGORIES
+        </div>
+
+        <ul class="menu">
+
+            <li>
+                🚑 Medical
+            </li>
+
+            <li>
+                🔥 Fire
+            </li>
+
+            <li>
+                🌊 Flood
+            </li>
+
+            <li>
+                🚗 Accident
+            </li>
+
+        </ul>
+
+        <div class="section-title">
+            SYSTEM
+        </div>
+
+        <ul class="menu">
+
+           <li onclick="showPage('settings',this)">
+    <i class="fas fa-cog"></i>
+    Settings
+</li>
+
+        </ul>
+
+    </aside>
+
+    <!-- MAIN -->
+
+    <main class="main">
+
+        <!-- TOP BAR -->
+
+        <header class="topbar">
+
+            <div>
+
+                <h1>
+                    Emergency Response Analytics &
+                    Failure Tracking System
+                </h1>
+
+                <p>
+                    Real-Time Emergency Operations Center
+                </p>
+
+            </div>
+
+            <div class="top-right">
+
+                <div class="live-status">
+
+                    <span class="pulse"></span>
+
+                    System Online
+
+                </div>
+
+                <div class="avatar">
+                    PM
+                </div>
+
+            </div>
+
+        </header>
+
+        <!-- DASHBOARD -->
+
+        <section id="dashboard">
+
+            <!-- KPI -->
+
+            <div class="kpi-grid">
+
+                <div class="kpi-card">
+
+                    <div class="kpi-label">
+                        Total Incidents
+                    </div>
+
+                    <div
+                    id="totalCount"
+                    class="kpi-value">
+                        0
+                    </div>
+
+                </div>
+
+                <div class="kpi-card danger">
+
+                    <div class="kpi-label">
+                        High Risk
+                    </div>
+
+                    <div
+                    id="highCount"
+                    class="kpi-value">
+                        0
+                    </div>
+
+                </div>
+
+                <div class="kpi-card warning">
+
+                    <div class="kpi-label">
+                        Medium Risk
+                    </div>
+
+                    <div
+                    id="mediumCount"
+                    class="kpi-value">
+                        0
+                    </div>
+
+                </div>
+
+                <div class="kpi-card success">
+
+                    <div class="kpi-label">
+                        Low Risk
+                    </div>
+
+                    <div
+                    id="lowCount"
+                    class="kpi-value">
+                        0
+                    </div>
+
+                </div>
+
+                <div class="card">
+
+    <h2>📍 Live Incident Map</h2>
+
+    <div id="map"></div>
+
+</div>
+
+            </div>
+
+            <!-- CREATE INCIDENT -->
+
+            <div class="card">
+
+                <h2>
+                    Create Incident
+                </h2>
+
+                <form id="incidentForm">
+
+                    <select
+                    id="emergency_type"
+                    required>
+
+                        <option value="">
+                            Select Emergency Type
+                        </option>
+
+                        <option value="Medical">
+                            Medical
+                        </option>
+
+                        <option value="Fire">
+                            Fire
+                        </option>
+
+                        <option value="Flood">
+                            Flood
+                        </option>
+
+                        <option value="Accident">
+                            Accident
+                        </option>
+
+                    </select>
+
+                    <input
+                    type="text"
+                    id="location_zone"
+                    placeholder="Location Zone"
+                    required>
+
+                    <select id="severity">
+
+                        <option value="High">
+                            High
+                        </option>
+
+                        <option value="Medium">
+                            Medium
+                        </option>
+
+                        <option value="Low">
+                            Low
+                        </option>
+
+                    </select>
+
+                    <select id="status">
+    <option value="Pending">Pending</option>
+    <option value="In Progress">In Progress</option>
+    <option value="Resolved">Resolved</option>
+</select>
+
+                    <button type="submit">
+
+                        <i class="fas fa-plus"></i>
+
+                        Create Incident
+
+                    </button>
+
+                </form>
+
+            </div>
+
+        </section>
+
+        <!-- INCIDENTS -->
+
+        <section
+        id="incidents"
+        style="display:none;">
+
+            <div class="card">
+
+                <div class="table-header">
+
+                    <h2>
+                        Incident Records
+                    </h2>
+
+                    <input
+                    type="text"
+                    id="searchInput"
+                    placeholder="Search incidents...">
+
+                </div>
+
+                <table>
+
+                    <thead>
+
+                    <tr>
+
+                        <th>ID</th>
+
+                        <th>Type</th>
+
+                        <th>Location</th>
+
+                        <th>Severity</th>
+
+                        <th>Status</th>
+
+                        <th>Action</th>
+
+                    </tr>
+
+                    </thead>
+
+                    <tbody
+                    id="incidentTable">
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+        <!-- ANALYTICS -->
+
+        <section
+        id="analytics"
+        style="display:none;">
+
+            <div class="analytics-grid">
+
+                <div class="card">
+
+                    <h2>
+                        Incident Analytics
+                    </h2>
+
+                    <canvas
+                    id="incidentChart">
+                    </canvas>
+
+                </div>
+
+                <div class="card">
+
+                    <h2>
+                        Failure Analysis
+                    </h2>
+
+                    <canvas
+                    id="failureChart">
+                    </canvas>
+
+                </div>
+
+            </div>
+
+            <div class="card">
+
+                <h2>
+                    Activity Timeline
+                </h2>
+
+                <div
+                id="activityFeed">
+
+                    <p>
+                        🟢 System Initialized
+                    </p>
+
+                </div>
+
+            </div>
+
+           
+        </section>
+
+        </section> <!-- analytics ends -->
+
+<section id="settings" style="display:none;">
+
+    <div class="card">
+
+        <h2>System Settings</h2>
+
+        <div class="setting-item">
+            <label>Dark Mode</label>
+            <input type="checkbox" checked>
+        </div>
+
+        <div class="setting-item">
+            <label>Notifications</label>
+            <input type="checkbox" checked>
+        </div>
+
+        <div class="setting-item">
+            <label>Auto Refresh</label>
+            <input type="checkbox">
+        </div>
+
+    </div>
+
+</section>
+
+    </main>
+
+</div>
+
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="script.js"></script>
+
+<button id="exportBtn" onclick="downloadPDF()">
+    📄 Export Report
+</button>
+
+
+
+
+</body>
+</html>
