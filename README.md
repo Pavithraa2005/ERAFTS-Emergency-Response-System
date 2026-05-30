@@ -154,3 +154,18 @@ Computer Science Student
 ## License
 
 This project is licensed under the MIT License.
+
+
+## Screenshots
+
+### Login Page
+![Login Page](screenshots/login-page.png)
+
+### Dashboard
+![Dashboard](screenshots/dashboard.png)
+
+### Incident Records
+![Incident Records](screenshots/Incident_Records.png)
+
+### PDF Report
+![PDF Report](screenshots/Incident_Report.png)
