@@ -165,7 +165,7 @@ This project is licensed under the MIT License.
 ![Dashboard](screenshots/dashboard.png)
 
 ### Incident Records
-![Incident Records](screenshots/Incident_Records.png)
+![Incident Records](screenshots/Incident_Record.png)
 
 ### PDF Report
 ![PDF Report](screenshots/Incident_Report.png)
