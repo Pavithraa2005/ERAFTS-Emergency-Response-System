@@ -116,19 +116,19 @@ http://localhost:5500/frontend/login.html
 
 ### Login Page
 
-(Add Screenshot)
+![Login Page](screenshots/login-page.png)
 
 ### Dashboard
 
-(Add Screenshot)
+![Dashboard](screenshots/dashboard.png)
 
-### Incident Records
+### Incident Record
 
-(Add Screenshot)
+![Incident Records](screenshots/Incident_Record.png)
 
 ### PDF Report
 
-(Add Screenshot)
+![PDF Report](screenshots/Incident_Report.png)
 
 ---
 
@@ -156,16 +156,4 @@ Computer Science Student
 This project is licensed under the MIT License.
 
 
-## Screenshots
 
-### Login Page
-![Login Page](screenshots/login-page.png)
-
-### Dashboard
-![Dashboard](screenshots/dashboard.png)
-
-### Incident Records
-![Incident Records](screenshots/Incident_Record.png)
-
-### PDF Report
-![PDF Report](screenshots/Incident_Report.png)
